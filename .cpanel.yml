@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export HOSTING_PATH=/home/almansh4/wilayah.almanshurin.com/
+    - /bin/rsync -vr --exclude '.git/' www/ $HOSTING_PATH
