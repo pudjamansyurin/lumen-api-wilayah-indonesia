@@ -1,4 +1,4 @@
-# API Wilayah Indonesia using Lumen Framework
+# API Wilayah Indonesia based on Lumen Framework
 
 This indonesia's territories database for micro service based on Lumen (Laravel lightweight version) framework.
 
@@ -9,6 +9,10 @@ This indonesia's territories database for micro service based on Lumen (Laravel 
 - Run the `docker-compose up -d`.
 
 Your LAMP stack is now ready!! You can access it via `http://localhost`.
+- Propinsi
+- Kabupaten/Kota
+- Kecamatan
+- Kelurahan
 
 ## Refferences
 
