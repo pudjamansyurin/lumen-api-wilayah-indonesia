@@ -2,6 +2,10 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use Illuminate\Http\Request;
+use App\Models\Wilayah;
+use App\Http\Resources\WilayahResource;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,6 +17,11 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->get('/', function (Request $request) use ($router) {
+    $mst_kode = $request->input('mst_kode_wilayah');
+    
+    $wilayah = Wilayah::where('MST_KODE_WILAYAH', $mst_kode)->get();
+
+    return WilayahResource::collection($wilayah);
+    // return $router->app->version();
 });

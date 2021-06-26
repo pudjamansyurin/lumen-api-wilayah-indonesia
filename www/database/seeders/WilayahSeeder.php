@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Wilayah;
 
-class DatabaseSeeder extends Seeder
+class WilayahSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,8 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            WilayahSeeder::class
-        ]);
+        Wilayah::factory()->count(50)->create();
     }
 }

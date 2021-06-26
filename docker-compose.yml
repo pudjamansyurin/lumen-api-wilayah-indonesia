@@ -45,6 +45,7 @@ services:
     # links:
     #   - database
     environment:
+      UPLOAD_LIMIT: 100M
       PMA_HOST: database
       PMA_PORT: 3306
       PMA_USER: root
