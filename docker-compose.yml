@@ -21,7 +21,7 @@ services:
       PMA_PORT: ${HOST_MACHINE_PMA_PORT}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
-      - app-network
+      - backend
   database:
     build:
       context: "./bin/${DATABASE}"
@@ -38,28 +38,28 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
-      - app-network
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: "${COMPOSE_PROJECT_NAME}-phpmyadmin"
-    # links:
-    #   - database
-    environment:
-      UPLOAD_LIMIT: 100M
-      PMA_HOST: database
-      PMA_PORT: 3306
-      PMA_USER: root
-      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    ports:
-      - "${HOST_MACHINE_PMA_PORT}:80"
-    volumes:
-      - /sessions
-      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
-    networks:
-      - app-network
+      - backend
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: "${COMPOSE_PROJECT_NAME}-phpmyadmin"
+  #   # links:
+  #   #   - database
+  #   environment:
+  #     UPLOAD_LIMIT: 100M
+  #     PMA_HOST: database
+  #     PMA_PORT: 3306
+  #     PMA_USER: root
+  #     PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  #     MYSQL_USER: ${MYSQL_USER}
+  #     MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  #   ports:
+  #     - "${HOST_MACHINE_PMA_PORT}:80"
+  #   volumes:
+  #     - /sessions
+  #     - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+  #   networks:
+  #     - backend
   # redis:
   #   container_name: '${COMPOSE_PROJECT_NAME}-redis'
   #   image: redis:latest
@@ -67,5 +67,5 @@ services:
   #     - "127.0.0.1:${HOST_MACHINE_REDIS_PORT}:6379"
 
 networks:
-  app-network:
+  backend:
     driver: bridge
